@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My todo app </title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="styles.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+  <h1> Add your todo </h1>
+  </header>
+      
+  <main>
+     <div class="container">
+        <div class="col s8">  
+        <form class="col s 6">
+              <label for="task"> New todo </label>
+                  <input type="text" class="todo-input" id="task" minlength="3" placeholder="Min length is 3 characters"> 
+                     <input  type="submit" class="todo-add-button btn"> 
+                 <!--  <i class="fa-solid fa-plus"></i> -->
+                    </input>
+                  </div>
+               <div class="col s8">
+               <h2 class="task-title"> Tasks </h2>
+                  <form class="task-form">
+             <label for="filter"> Filter task </label> 
+           <input type="text" class="filter" id="filter"> </input>
+          <ul class="todo-list"> </ul>
+          <a href="#" class="clear-tasks btn"> Clear tasks </a>
+        </div> 
+      </div>
+        </form>
+    </main>
+  <script src="index.js"> </script> 
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+   <script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+</body>
+</html>
