@@ -1,0 +1,13 @@
+{
+  "scripts": {
+    "build": "cross-env NODE_ENV=production webpack --mode production",
+    "dev": "cross-env NODE_ENV=development webpack --mode development",
+    "start": "cross-env NODE_ENV=development webpack serve --mode development",
+    "lint": "eslint . --fix"
+  },
+  "devDependencies": {
+    "eslint": "^8.9.0",
+    "webpack": "^5.69.1",
+    "webpack-cli": "^4.9.2"
+  }
+}
