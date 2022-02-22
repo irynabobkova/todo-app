@@ -1,7 +1,7 @@
 * {
     margin:0;
     padding: 0;
-    box-sizing: border-box;    
+    box-sizing: border-box;   
 }
 
 
@@ -73,6 +73,10 @@ form button:hover {
     background-color: whitesmoke;
 }
 
+.todo-add-button, .filter {
+    font-style: italic;
+    font-family: 'Dancing Script';
+}
 
 .todo-container {
     display: flex;
@@ -125,4 +129,26 @@ i {
 
 div {
     margin: 0.5rem;
+}
+
+input {
+    color: whitesmoke;
+    font-family: 'Dancing Script';
+    font-size: 1.3rem;
+}
+
+input::placeholder {
+    /*with the help of placeholder and pseudoclasses helper text appears only when input is in focus */
+    opacity: 0;
+    outline: 0;
+    border: 0;
+    font-size: 1.3rem;
+    font-style: italic, bold;
+    font-family: 'Dancing Script';
+}
+
+input:focus::placeholder {
+    opacity: 1;
+    outline: 0;
+    border: 0;
 }

@@ -1,7 +1,6 @@
 const todoInput = document.querySelector('.todo-input');
 const todoAddButton = document.querySelector('.todo-add-button');
 const todoList = document.querySelector('.todo-list'); 
-const form = document.querySelector('form')
 const todoClearBtn = document.querySelector('.clear-tasks')
 const filter = document.querySelector('.filter')
 
@@ -13,7 +12,7 @@ function loadEventListeners() {
     todoList.addEventListener('click', deleteTodo);
     todoClearBtn.addEventListener('click', deleteAllTodoItems);
     filter.addEventListener('keyup', filterTodo);
- //   document.addEventListener('DOMContentLoaded', getItems)
+    document.addEventListener('DOMContentLoaded', getTodos)
 }
 
 function addTodo(event) {
@@ -44,6 +43,8 @@ function deleteTodo(event) {
  event.preventDefault(); 
  if(event.target.parentElement.classList.contains('delete-item')) {
      event.target.parentElement.parentElement.remove();
+
+     deleteTodofromSessionStorage(event.target.parentElement.parentElement)
  }
 }
 
@@ -52,7 +53,29 @@ function deleteAllTodoItems() {
     while(todoList.firstChild) {
         todoList.removeChild(todoList.firstChild); //this one is faster
     }
+    deleteAllTodofromSessionStorage()
 }
+
+function deleteAllTodofromSessionStorage() {
+  sessionStorage.clear();
+}
+
+function deleteTodofromSessionStorage(todoItem) {
+  let todos;
+  if(sessionStorage.getItem('todos') === null){
+    todos = [];
+  } else {
+    todos = JSON.parse(sessionStorage.getItem('todos'));
+  }
+  todos.forEach(function(todo, index){
+    if (todoItem.textContent === todo) {
+      todos.splice(index, 1)
+    }
+  });
+  sessionStorage.setItem('todos', JSON.stringify(todos));
+}
+
+
 
 function filterTodo(event) {
     const text = event.target.value.toLowerCase();
@@ -68,16 +91,41 @@ function filterTodo(event) {
 }
 
 
-function storeTodoInSessionStorage(item) {
-  let items;
+function storeTodoInSessionStorage(todo) {
+  let todos;
   if(sessionStorage.getItem('todos') === null){
-    items = [];
+    todos = [];
   } else {
-    items = JSON.parse(sessionStorage.getItem('todos'));
+    todos = JSON.parse(sessionStorage.getItem('todos'));
   }
 
-  items.push(item);
-  sessionStorage.setItem('todos', JSON.stringify(items));
+  todos.push(todo);
+  sessionStorage.setItem('todos', JSON.stringify(todos));
 }
 
 
+function getTodos() {
+  let todos;
+  if(sessionStorage.getItem('todos') === null){
+    todos = [];
+  } else {
+    todos = JSON.parse(sessionStorage.getItem('todos'));
+  }
+
+  todos.forEach(function(todo){
+    // Create li element with class
+  const li = document.createElement('li');
+  li.className = 'collection-item';
+  // Create text node 
+  li.appendChild(document.createTextNode(todo));
+  // Create new link element
+  const link = document.createElement('a');
+  // Add class
+  link.className = 'delete-item secondary-content';
+  link.innerHTML = '<i class="fa fa-remove"></i>';
+  // Append the link to li
+  li.appendChild(link);
+  // Append li to ul
+  todoList.appendChild(li);   
+  })
+}
